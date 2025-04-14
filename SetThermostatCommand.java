@@ -1,21 +1,21 @@
 class SetThermostatCommand implements Command {
-    private Thermostat thermostat;
-    private int temperature;
-    private int previousTemp;
+    private final Thermostat thermostat;
+    private final int targetTemperature;
+    private int previousTemperature;
 
-    public SetThermostatCommand(Thermostat thermostat, int temp) {
+    public SetThermostatCommand(Thermostat thermostat, int targetTemperature) {
         this.thermostat = thermostat;
-        this.temperature = temp;
+        this.targetTemperature = targetTemperature;
+        this.previousTemperature = thermostat.getCurrentTemperature();
     }
 
     @Override
     public void execute() {
-        previousTemp = thermostat.currentTemperature;
-        thermostat.setTemperature(temperature);
+        thermostat.setTemperature(targetTemperature);
     }
 
     @Override
     public void undo() {
-        thermostat.setTemperature(previousTemp);
+        thermostat.setTemperature(previousTemperature);
     }
 }

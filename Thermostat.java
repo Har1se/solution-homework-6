@@ -1,13 +1,18 @@
-class Thermostat{
+public class Thermostat {
     private int currentTemperature = 20;
     private int previousTemperature;
 
-    public void setTemperature(int temp){
+    public int getCurrentTemperature() {
+        return currentTemperature;
+    }
+
+    public void setTemperature(int temp) {
         previousTemperature = currentTemperature;
         currentTemperature = temp;
         System.out.println("[Thermostat] Setting temperature to " + temp + "°C");
     }
-    public void revert(){
+
+    public void revert() {
         int temp = currentTemperature;
         currentTemperature = previousTemperature;
         previousTemperature = temp;
